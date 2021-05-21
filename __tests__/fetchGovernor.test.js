@@ -62,4 +62,28 @@ describe('fetchGovernor tests', () => {
     };
     expect(result).toStrictEqual(expected);
   });
+
+  it('should fail if no input provided', async () => {
+    await expect(fetchGovernor).rejects.toThrow(
+      'No State abbreviation provided',
+    );
+  });
+
+  it('should fail if not provided with a valid abbreviation', async () => {
+    const callFetchGovernor = async () => {
+      return await fetchGovernor(42);
+    };
+    await expect(callFetchGovernor).rejects.toThrow(
+      'State abbreviation must be a string',
+    );
+  });
+
+  it('should fail if input length !== 2', async () => {
+    const callFetchGovernor = async () => {
+      return await fetchGovernor('usa');
+    };
+    await expect(callFetchGovernor).rejects.toThrow(
+      'State abbreviation must be 2 characters',
+    );
+  });
 });
