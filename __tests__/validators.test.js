@@ -1,6 +1,7 @@
 const {
   validateState,
   validateStates,
+  validateSortBy,
 } = require('../src/validators');
 
 describe('validateState tests', () => {
@@ -51,5 +52,30 @@ describe('validateStates tests', () => {
     expect(callValidateStates).toThrow(
       'State abbreviation must be a string',
     );
+  });
+
+  describe('validateSortByTest', () => {
+    it('should throw an exception if no sort field is specified', () => {
+      expect(validateSortBy).toThrow('No sort by field specified');
+    });
+    it('should throw an exception if the provided value is not a string', () => {
+      const callValidateSortBy = () => {
+        return validateSortBy(42);
+      };
+      expect(callValidateSortBy).toThrow(
+        'Sort type must be a string',
+      );
+    });
+    it('should throw an exception if an invalid field name is provided', () => {
+      const callValidateSortBy = () => {
+        return validateSortBy('ohno');
+      };
+      expect(callValidateSortBy).toThrow(
+        'Invalid sort by field specified',
+      );
+    });
+    it('should return true if valid sort by input received', () => {
+      expect(validateSortBy('lastName')).toBe(true);
+    });
   });
 });

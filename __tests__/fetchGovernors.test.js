@@ -19,9 +19,9 @@ describe('fetchGovernors tests', () => {
   });
   it('should return 3 governors if provided with a valid list of state abbreviations', async () => {
     const expected = [
-      { firstName: 'Andrew', lastName: 'M.' },
-      { firstName: 'Gavin', lastName: 'Newsom' },
-      { firstName: 'Brian', lastName: 'Kemp' },
+      { firstName: 'Gavin', lastName: 'Newsom', state: 'ca' },
+      { firstName: 'Brian', lastName: 'Kemp', state: 'ga' },
+      { firstName: 'Andrew', lastName: 'M.', state: 'ny' },
     ];
     const result = await fetchGovernors(['ny', 'ca', 'ga']);
     expect(result).toEqual(expected);
@@ -33,5 +33,32 @@ describe('fetchGovernors tests', () => {
     await expect(callFetchGovernors).rejects.toThrow(
       'State abbreviation must be a string',
     );
+  });
+  it('should sort by last name if sortBy param = lastName', async () => {
+    const expected = [
+      { firstName: 'Brian', lastName: 'Kemp', state: 'ga' },
+      { firstName: 'Andrew', lastName: 'M.', state: 'ny' },
+      { firstName: 'Gavin', lastName: 'Newsom', state: 'ca' },
+    ];
+
+    const result = await fetchGovernors(
+      ['ny', 'ca', 'ga'],
+      'lastName',
+    );
+    expect(result).toEqual(expected);
+  });
+
+  it('should sort by first name if sortBy param = firstName', async () => {
+    const expected = [
+      { firstName: 'Andrew', lastName: 'M.', state: 'ny' },
+      { firstName: 'Brian', lastName: 'Kemp', state: 'ga' },
+      { firstName: 'Gavin', lastName: 'Newsom', state: 'ca' },
+    ];
+
+    const result = await fetchGovernors(
+      ['ny', 'ca', 'ga'],
+      'firstName',
+    );
+    expect(result).toEqual(expected);
   });
 });

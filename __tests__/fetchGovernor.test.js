@@ -59,6 +59,7 @@ describe('fetchGovernor tests', () => {
     const expected = {
       firstName: 'Brian',
       lastName: 'Kemp',
+      state: 'ga',
     };
     expect(result).toStrictEqual(expected);
   });
