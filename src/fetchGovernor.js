@@ -1,13 +1,9 @@
 require('dotenv').config();
 const axios = require('axios');
+const validateState = require('./validateState');
 
 const fetchGovernor = async (state) => {
-  if (!state) throw new Error('No State abbreviation provided');
-  if (typeof state !== 'string')
-    throw new Error('State abbreviation must be a string');
-  if (state.length !== 2)
-    throw new Error('State abbreviation must be 2 characters');
-
+  validateState(state);
   try {
     const response = await axios.get(
       'https://www.googleapis.com/civicinfo/v2/representatives/ocdId',
