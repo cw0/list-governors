@@ -1,7 +1,31 @@
 const fetchGovernors = require('../src/fetchGovernors');
 const fetchGovernor = require('../src/fetchGovernor');
 
-//jest.mock('fetchGovernor');
+jest.mock('../src/fetchGovernor');
+
+fetchGovernor.mockImplementation((state) => {
+  if (state === 'ca') {
+    return Promise.resolve({
+      firstName: 'Gavin',
+      lastName: 'Newsom',
+      state: 'ca',
+    });
+  }
+  if (state === 'ga') {
+    return Promise.resolve({
+      firstName: 'Brian',
+      lastName: 'Kemp',
+      state: 'ga',
+    });
+  }
+  if (state === 'ny') {
+    return Promise.resolve({
+      firstName: 'Andrew M.',
+      lastName: 'Cuomo',
+      state: 'ny',
+    });
+  }
+});
 
 describe('fetchGovernors tests', () => {
   it('should throw an exception if no list of states provided', async () => {
@@ -21,7 +45,7 @@ describe('fetchGovernors tests', () => {
     const expected = [
       { firstName: 'Gavin', lastName: 'Newsom', state: 'ca' },
       { firstName: 'Brian', lastName: 'Kemp', state: 'ga' },
-      { firstName: 'Andrew', lastName: 'M.', state: 'ny' },
+      { firstName: 'Andrew M.', lastName: 'Cuomo', state: 'ny' },
     ];
     const result = await fetchGovernors(['ny', 'ca', 'ga']);
     expect(result).toEqual(expected);
@@ -36,8 +60,8 @@ describe('fetchGovernors tests', () => {
   });
   it('should sort by last name if sortBy param = lastName', async () => {
     const expected = [
+      { firstName: 'Andrew M.', lastName: 'Cuomo', state: 'ny' },
       { firstName: 'Brian', lastName: 'Kemp', state: 'ga' },
-      { firstName: 'Andrew', lastName: 'M.', state: 'ny' },
       { firstName: 'Gavin', lastName: 'Newsom', state: 'ca' },
     ];
 
@@ -50,7 +74,7 @@ describe('fetchGovernors tests', () => {
 
   it('should sort by first name if sortBy param = firstName', async () => {
     const expected = [
-      { firstName: 'Andrew', lastName: 'M.', state: 'ny' },
+      { firstName: 'Andrew M.', lastName: 'Cuomo', state: 'ny' },
       { firstName: 'Brian', lastName: 'Kemp', state: 'ga' },
       { firstName: 'Gavin', lastName: 'Newsom', state: 'ca' },
     ];

@@ -17,10 +17,10 @@ const fetchGovernor = async (state) => {
       },
     );
     //TODO add more validation
-    const governorName = response.data.officials[0].name.split(' ');
+    const governorName = response.data.officials[0].name;
     return {
-      firstName: governorName[0],
-      lastName: governorName[1],
+      firstName: governorName.split(' ').slice(0, -1).join(' '),
+      lastName: governorName.split(' ').slice(-1).join(' '),
       state,
     };
   } catch (error) {
