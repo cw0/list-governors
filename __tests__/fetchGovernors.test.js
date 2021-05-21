@@ -26,4 +26,12 @@ describe('fetchGovernors tests', () => {
     const result = await fetchGovernors(['ny', 'ca', 'ga']);
     expect(result).toEqual(expected);
   });
+  it('should throw an exception if one of the list members is not valid', async () => {
+    const callFetchGovernors = async () => {
+      return await fetchGovernors(['ga', 'ny', 42]);
+    };
+    await expect(callFetchGovernors).rejects.toThrow(
+      'State abbreviation must be a string',
+    );
+  });
 });
