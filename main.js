@@ -8,7 +8,7 @@ const { fetchGovernors } = require('./index');
 
     const governors = await fetchGovernors(states, sortBy);
 
-    console.log({ governors });
+    console.log(governors);
   } catch (error) {
     console.error('An Error Occurred', error);
   }

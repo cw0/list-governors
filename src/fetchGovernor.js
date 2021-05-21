@@ -17,8 +17,9 @@ const fetchGovernor = async (state) => {
         },
       },
     );
-    //TODO add more validation
+
     const governorName = response.data.officials[0].name;
+
     return {
       firstName: governorName.split(' ').slice(0, -1).join(' '),
       lastName: governorName.split(' ').slice(-1).join(' '),

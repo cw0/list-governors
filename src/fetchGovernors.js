@@ -25,7 +25,7 @@ const fetchGovernors = async (states, sortBy = 'state') => {
     return 0;
   });
 
-  return governors;
+  return { governors };
 };
 
 module.exports = fetchGovernors;

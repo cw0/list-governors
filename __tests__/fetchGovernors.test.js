@@ -42,11 +42,13 @@ describe('fetchGovernors tests', () => {
     );
   });
   it('should return 3 governors if provided with a valid list of state abbreviations', async () => {
-    const expected = [
-      { firstName: 'Gavin', lastName: 'Newsom', state: 'CA' },
-      { firstName: 'Brian', lastName: 'Kemp', state: 'GA' },
-      { firstName: 'Andrew M.', lastName: 'Cuomo', state: 'NY' },
-    ];
+    const expected = {
+      governors: [
+        { firstName: 'Gavin', lastName: 'Newsom', state: 'CA' },
+        { firstName: 'Brian', lastName: 'Kemp', state: 'GA' },
+        { firstName: 'Andrew M.', lastName: 'Cuomo', state: 'NY' },
+      ],
+    };
     const result = await fetchGovernors(['ny', 'ca', 'ga']);
     expect(result).toEqual(expected);
   });
@@ -59,11 +61,13 @@ describe('fetchGovernors tests', () => {
     );
   });
   it('should sort by last name if sortBy param = lastName', async () => {
-    const expected = [
-      { firstName: 'Andrew M.', lastName: 'Cuomo', state: 'NY' },
-      { firstName: 'Brian', lastName: 'Kemp', state: 'GA' },
-      { firstName: 'Gavin', lastName: 'Newsom', state: 'CA' },
-    ];
+    const expected = {
+      governors: [
+        { firstName: 'Andrew M.', lastName: 'Cuomo', state: 'NY' },
+        { firstName: 'Brian', lastName: 'Kemp', state: 'GA' },
+        { firstName: 'Gavin', lastName: 'Newsom', state: 'CA' },
+      ],
+    };
 
     const result = await fetchGovernors(
       ['ny', 'ca', 'ga'],
@@ -73,11 +77,13 @@ describe('fetchGovernors tests', () => {
   });
 
   it('should sort by first name if sortBy param = firstName', async () => {
-    const expected = [
-      { firstName: 'Andrew M.', lastName: 'Cuomo', state: 'NY' },
-      { firstName: 'Brian', lastName: 'Kemp', state: 'GA' },
-      { firstName: 'Gavin', lastName: 'Newsom', state: 'CA' },
-    ];
+    const expected = {
+      governors: [
+        { firstName: 'Andrew M.', lastName: 'Cuomo', state: 'NY' },
+        { firstName: 'Brian', lastName: 'Kemp', state: 'GA' },
+        { firstName: 'Gavin', lastName: 'Newsom', state: 'CA' },
+      ],
+    };
 
     const result = await fetchGovernors(
       ['ny', 'ca', 'ga'],
