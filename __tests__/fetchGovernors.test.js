@@ -8,21 +8,21 @@ fetchGovernor.mockImplementation((state) => {
     return Promise.resolve({
       firstName: 'Gavin',
       lastName: 'Newsom',
-      state: 'ca',
+      state: 'CA',
     });
   }
   if (state === 'ga') {
     return Promise.resolve({
       firstName: 'Brian',
       lastName: 'Kemp',
-      state: 'ga',
+      state: 'GA',
     });
   }
   if (state === 'ny') {
     return Promise.resolve({
       firstName: 'Andrew M.',
       lastName: 'Cuomo',
-      state: 'ny',
+      state: 'NY',
     });
   }
 });
@@ -43,9 +43,9 @@ describe('fetchGovernors tests', () => {
   });
   it('should return 3 governors if provided with a valid list of state abbreviations', async () => {
     const expected = [
-      { firstName: 'Gavin', lastName: 'Newsom', state: 'ca' },
-      { firstName: 'Brian', lastName: 'Kemp', state: 'ga' },
-      { firstName: 'Andrew M.', lastName: 'Cuomo', state: 'ny' },
+      { firstName: 'Gavin', lastName: 'Newsom', state: 'CA' },
+      { firstName: 'Brian', lastName: 'Kemp', state: 'GA' },
+      { firstName: 'Andrew M.', lastName: 'Cuomo', state: 'NY' },
     ];
     const result = await fetchGovernors(['ny', 'ca', 'ga']);
     expect(result).toEqual(expected);
@@ -60,9 +60,9 @@ describe('fetchGovernors tests', () => {
   });
   it('should sort by last name if sortBy param = lastName', async () => {
     const expected = [
-      { firstName: 'Andrew M.', lastName: 'Cuomo', state: 'ny' },
-      { firstName: 'Brian', lastName: 'Kemp', state: 'ga' },
-      { firstName: 'Gavin', lastName: 'Newsom', state: 'ca' },
+      { firstName: 'Andrew M.', lastName: 'Cuomo', state: 'NY' },
+      { firstName: 'Brian', lastName: 'Kemp', state: 'GA' },
+      { firstName: 'Gavin', lastName: 'Newsom', state: 'CA' },
     ];
 
     const result = await fetchGovernors(
@@ -74,9 +74,9 @@ describe('fetchGovernors tests', () => {
 
   it('should sort by first name if sortBy param = firstName', async () => {
     const expected = [
-      { firstName: 'Andrew M.', lastName: 'Cuomo', state: 'ny' },
-      { firstName: 'Brian', lastName: 'Kemp', state: 'ga' },
-      { firstName: 'Gavin', lastName: 'Newsom', state: 'ca' },
+      { firstName: 'Andrew M.', lastName: 'Cuomo', state: 'NY' },
+      { firstName: 'Brian', lastName: 'Kemp', state: 'GA' },
+      { firstName: 'Gavin', lastName: 'Newsom', state: 'CA' },
     ];
 
     const result = await fetchGovernors(
