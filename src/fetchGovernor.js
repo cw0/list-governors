@@ -18,7 +18,11 @@ const fetchGovernor = async (state) => {
     );
     //TODO add more validation
     const governorName = response.data.officials[0].name.split(' ');
-    return { firstName: governorName[0], lastName: governorName[1] };
+    return {
+      firstName: governorName[0],
+      lastName: governorName[1],
+      state,
+    };
   } catch (error) {
     console.error(`An Error Occurred: ${error}`);
   }

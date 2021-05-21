@@ -15,4 +15,15 @@ const validateStates = (states) => {
   return true;
 };
 
-module.exports = { validateState, validateStates };
+const validSortFields = ['firstName', 'lastName', 'state'];
+
+const validateSortBy = (fieldName) => {
+  if (!fieldName) throw new Error('No sort by field specified');
+  if (typeof fieldName !== 'string')
+    throw new Error('Sort type must be a string');
+  if (!validSortFields.includes(fieldName))
+    throw new Error('Invalid sort by field specified');
+  return true;
+};
+
+module.exports = { validateState, validateStates, validateSortBy };
