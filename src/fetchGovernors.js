@@ -1,9 +1,8 @@
 const fetchGovernor = require('./fetchGovernor');
+const { validateStates } = require('./validators');
 
 const fetchGovernors = async (states) => {
-  if (!states) throw new Error('No States provided');
-  if (!Array.isArray(states))
-    throw new Error('States should be provided as an array');
+  validateStates(states);
   const governors = Promise.all(
     states.map((state) => {
       return fetchGovernor(state);

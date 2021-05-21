@@ -1,6 +1,6 @@
 require('dotenv').config();
 const axios = require('axios');
-const validateState = require('./validateState');
+const { validateState } = require('./validators');
 
 const fetchGovernor = async (state) => {
   validateState(state);

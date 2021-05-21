@@ -7,4 +7,12 @@ const validateState = (state) => {
   return true;
 };
 
-module.exports = validateState;
+const validateStates = (states) => {
+  if (!states) throw new Error('No States provided');
+  if (!Array.isArray(states))
+    throw new Error('States should be provided as an array');
+  states.map((state) => validateState(state));
+  return true;
+};
+
+module.exports = { validateState, validateStates };
