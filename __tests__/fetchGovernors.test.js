@@ -6,7 +6,7 @@ const fetchGovernor = require('../src/fetchGovernor');
 describe('fetchGovernors tests', () => {
   it('should throw an exception if no list of states provided', async () => {
     await expect(fetchGovernors).rejects.toThrow(
-      'No States Provided',
+      'No States provided',
     );
   });
   it('should throw exception if typeof states is not a list', async () => {
@@ -18,7 +18,11 @@ describe('fetchGovernors tests', () => {
     );
   });
   it('should return 3 governors if provided with a valid list of state abbreviations', async () => {
-    const expected = [{}, {}, {}];
+    const expected = [
+      { firstName: 'Andrew', lastName: 'M.' },
+      { firstName: 'Gavin', lastName: 'Newsom' },
+      { firstName: 'Brian', lastName: 'Kemp' },
+    ];
     const result = await fetchGovernors(['ny', 'ca', 'ga']);
     expect(result).toEqual(expected);
   });
